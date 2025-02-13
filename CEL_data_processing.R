@@ -50,4 +50,4 @@ rownames(expr.data) <- gene.symbols
 expr.data <- na.omit(expr.data)
 head(expr.data)
 
-write.csv(expr.data, "hESC_expression_data.csv", row.names = TRUE)
+write.csv(expr.data, "expression_data.csv", row.names = TRUE)
