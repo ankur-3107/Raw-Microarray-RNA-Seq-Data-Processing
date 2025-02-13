@@ -35,4 +35,4 @@ In this project, 5 different types of input files are used such CEL, IDAT, TXT, 
 
 ## Output Format
 
-The output is a gene expression matrix in in CSV format in which samples are as column names and gene names are as row names.
+The output is a gene expression matrix in CSV format in which samples are as column names and gene names are as row names.
