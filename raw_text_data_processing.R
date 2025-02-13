@@ -64,13 +64,13 @@ expr_list <- lapply(file_list, process_file)
 # Merge all data frames by "Reporter.identifier"
 expr_matrix <- Reduce(function(x, y) full_join(x, y, by = "Reporter.identifier"), expr_list)    # it will create tibble
 
-# Use Ensembl's biomaRt to fetch gene symbols for RefSeq Protein IDs
+# Use Ensembl's biomaRt to fetch gene symbols for RefSeq mRNA IDs
 convert_refseq_to_symbol <- function(refseq_ids) {
   mart <- useMart("ensembl", dataset = "hsapiens_gene_ensembl")  # Connect to Ensembl database
   
   # Query the database to get Gene Symbols
   gene_map <- getBM(
-    attributes = c("refseq_mrna", "hgnc_symbol"),  # RefSeq Protein ID -> Gene Symbol
+    attributes = c("refseq_mrna", "hgnc_symbol"),  # RefSeq mRNA ID -> Gene Symbol
     filters = "refseq_mrna",
     values = refseq_ids,
     mart = mart
@@ -79,7 +79,7 @@ convert_refseq_to_symbol <- function(refseq_ids) {
   return(gene_map)
 }
 
-# Extract the first column from expr_matrix (RefSeq Protein IDs)
+# Extract the first column from expr_matrix (RefSeq mRNA IDs)
 refseq_ids <- expr_matrix[,1]
 
 # Convert RefSeq IDs to Gene Symbols
